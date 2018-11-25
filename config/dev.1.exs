@@ -57,5 +57,8 @@ config :dcbot, Dcbot.Repo,
   pool_size: 10
 
 config :nostrum,
-  token: "NTE1ODY4NTE3MTQ5NzA0MjAy.DtrXsQ.8uVJiGBzNbOuTaUe9Ar-_w6W9kk", # burned my bad :|
+  # burned my bad :|
+  token: "NTE1ODY4NTE3MTQ5NzA0MjAy.DtrXsQ.8uVJiGBzNbOuTaUe9Ar-_w6W9kk",
   num_shards: 1
+
+config :dcbot, Witai, token: "hehehe el tokeno"

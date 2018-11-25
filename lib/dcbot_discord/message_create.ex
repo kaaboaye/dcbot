@@ -2,7 +2,8 @@ defmodule DcbotDiscord.MessageCreate do
   require Logger
 
   def process_message(msg) do
-    with :noop <- DcbotDiscord.Ping.processs_message(msg) do
+    with :noop <- DcbotDiscord.Ping.processs_message(msg),
+         :noop <- DcbotDiscord.Ok.process_message(msg) do
       :noop
     else
       {:error, err} ->

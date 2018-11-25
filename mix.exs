@@ -41,7 +41,8 @@ defmodule Dcbot.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:nostrum, git: "https://github.com/Kraigie/nostrum.git"}
+      {:nostrum, git: "https://github.com/Kraigie/nostrum.git"},
+      {:httpoison, "~> 1.0", override: true}
     ]
   end
 
