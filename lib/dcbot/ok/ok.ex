@@ -15,5 +15,7 @@ defmodule Dcbot.Ok do
     {:weather_conditions, res}
   end
 
+  defp process_nlp_results(%{"see_you" => _}), do: :see_you
+  defp process_nlp_results(%{"help" => _}), do: :help
   defp process_nlp_results(_), do: :noop
 end

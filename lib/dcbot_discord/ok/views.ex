@@ -24,8 +24,18 @@ defmodule DcbotDiscord.Ok.Views do
     :ok
   end
 
+  def render(:see_you, channel_id) do
+    create_message(channel_id, "Do zobaczenia :kissing_heart:")
+    :ok
+  end
+
+  def render(:help, channel_id) do
+    create_message(channel_id, "Możesz się mnie zapytać o pogodę")
+    :ok
+  end
+
   def render(:noop, channel_id) do
     create_message(channel_id, "Nie rozumiem :(")
-    :noop
+    :ok
   end
 end
