@@ -2,7 +2,12 @@ defmodule DcbotDiscord.Ok.Views do
   import Nostrum.Api
 
   def render(list, channel_id) when is_list(list) do
-    Enum.map(list, fn view -> render(view, channel_id) end)
+    list
+    |> Enum.map(fn view -> render(view, channel_id) end)
+    |> case do
+      [] -> render(:noop, channel_id)
+      _ -> nil
+    end
   end
 
   def render({:weather_conditions, locations}, channel_id) do
