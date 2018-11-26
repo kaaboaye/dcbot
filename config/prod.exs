@@ -17,6 +17,11 @@ config :dcbot, DcbotWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :nostrum,
+  token: System.get_env("DISCORD_TOKEN")
+
+config :dcbot, Witai, token: System.get_env("WITAI_TOKEN")
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
@@ -68,4 +73,4 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which should be versioned
 # separately.
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"
