@@ -1,6 +1,10 @@
 defmodule DcbotDiscord.Ok.Views do
   import Nostrum.Api
 
+  def render(list, channel_id) when is_list(list) do
+    Enum.map(list, fn view -> render(view, channel_id) end)
+  end
+
   def render({:weather_conditions, locations}, channel_id) do
     Enum.map(
       locations,
@@ -24,8 +28,23 @@ defmodule DcbotDiscord.Ok.Views do
     :ok
   end
 
+  def render(:hi, channel_id) do
+    create_message(channel_id, "Siemka :rainbow::kissing_heart::rainbow:")
+    :ok
+  end
+
+  def render(:love, channel_id) do
+    create_message(channel_id, "Ja ciebie też :heart::heart::heart:")
+    :ok
+  end
+
   def render(:see_you, channel_id) do
     create_message(channel_id, "Do zobaczenia :kissing_heart:")
+    :ok
+  end
+
+  def render(:swear, channel_id) do
+    create_message(channel_id, "Nie przeklinaj :cold_sweat::scream::cold_sweat:")
     :ok
   end
 

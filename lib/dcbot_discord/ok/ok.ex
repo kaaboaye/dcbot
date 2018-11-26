@@ -6,6 +6,8 @@ defmodule DcbotDiscord.Ok do
     cmd
     |> Ok.process_message()
     |> Views.render(channel_id)
+
+    :ok
   end
 
   def process_message(_), do: :noop
