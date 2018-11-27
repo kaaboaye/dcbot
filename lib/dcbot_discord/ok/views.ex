@@ -54,6 +54,7 @@ defmodule DcbotDiscord.Ok.Views do
   end
 
   def render(:thebita, channel_id) do
+    create_message(channel_id, "**pstryk**")
     create_message(channel_id, "Fuuuuuuuu")
     :ok
   end
