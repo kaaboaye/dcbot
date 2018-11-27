@@ -53,6 +53,21 @@ defmodule DcbotDiscord.Ok.Views do
     :ok
   end
 
+  def render(:thebita, channel_id) do
+    create_message(channel_id, "Fuuuuuuuu")
+    :ok
+  end
+
+  def render(:sad, channel_id) do
+    create_message(channel_id, ":cold_sweat::cold_sweat::cold_sweat:")
+    :ok
+  end
+
+  def render(:ok_res, channel_id) do
+    create_message(channel_id, "OK.")
+    :ok
+  end
+
   def render(:help, channel_id) do
     create_message(channel_id, "Możesz się mnie zapytać o pogodę")
     :ok

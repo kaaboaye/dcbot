@@ -9,6 +9,9 @@ defmodule Dcbot.Ok do
     |> see_you(nlp)
     |> swear(nlp)
     |> help(nlp)
+    |> sad(nlp)
+    |> thebita(nlp)
+    |> ok(nlp)
   end
 
   defp weather(results, %{"location" => locations, "weather" => _}) do
@@ -37,4 +40,13 @@ defmodule Dcbot.Ok do
 
   defp help(results, %{"help" => _}), do: [:help | results]
   defp help(results, _), do: results
+
+  defp sad(results, %{"sad" => _}), do: [:sad | results]
+  defp sad(results, _), do: results
+
+  defp thebita(results, %{"thebita" => _}), do: [:thebita | results]
+  defp thebita(results, _), do: results
+
+  defp ok(results, %{"ok" => _}), do: [:ok_res | results]
+  defp ok(results, _), do: results
 end
