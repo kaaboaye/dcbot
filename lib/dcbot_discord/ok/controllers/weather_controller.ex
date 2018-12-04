@@ -10,6 +10,7 @@ defmodule DcbotDiscord.Ok.WeatherController do
         |> Enum.map(&Task.await/1)
 
       render_weather(msg, locations)
+      :ok
     end
   end
 end
