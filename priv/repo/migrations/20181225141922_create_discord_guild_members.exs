@@ -17,8 +17,19 @@ defmodule Dcbot.Repo.Migrations.CreateDiscordGuildMembers do
           ),
           primary_key: true
 
-      add :eula_asked, :string, default: "none", null: false
-      add :eula_accepted, :string, default: "none", null: false
+      add :eula_asked_id,
+          references(
+            :discord_guild_eulas,
+            on_delete: :nothing,
+            type: :uuid
+          )
+
+      add :eula_accepted_id,
+          references(
+            :discord_guild_eulas,
+            on_delete: :nothing,
+            type: :uuid
+          )
 
       timestamps()
     end
