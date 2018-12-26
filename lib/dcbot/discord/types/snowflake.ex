@@ -7,8 +7,6 @@ defmodule Dcbot.Discord.Types.Snowflake do
   @int64min -9_223_372_036_854_775_808
   @int64max 9_223_372_036_854_775_807
 
-  @uint64_to_int64_shift 9_223_372_036_854_775_808
-
   @discod_epoch 1_420_070_400_000
 
   defstruct timestamp: nil,
@@ -46,16 +44,22 @@ defmodule Dcbot.Discord.Types.Snowflake do
   def dump(nil), do: {:ok, nil}
 
   def dump(snowflake)
-      when is_integer(snowflake) and @uint64min <= snowflake and snowflake <= @uint64max,
-      do: {:ok, snowflake - @uint64_to_int64_shift}
+      when is_integer(snowflake) and @uint64min <= snowflake and snowflake <= @uint64max do
+    <<int::signed-integer-size(64)>> = <<snowflake::64>>
+
+    {:ok, int}
+  end
 
   def dump(_), do: :error
 
   def load(nil), do: {:ok, nil}
 
-  def load(snowflake)
-      when is_number(snowflake) and @int64min <= snowflake and snowflake <= @int64max,
-      do: {:ok, snowflake + @uint64_to_int64_shift}
+  def load(signed_snowflake)
+      when is_number(signed_snowflake) and @int64min <= signed_snowflake and
+             signed_snowflake <= @int64max do
+    <<snowflake::64>> = <<signed_snowflake::signed-integer-size(64)>>
+    {:ok, snowflake}
+  end
 
   def load(_), do: :error
 end
