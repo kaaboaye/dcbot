@@ -1,18 +1,22 @@
 defmodule Yahoo do
   import Yahoo.Service
 
-  def get_weather_conditions(place) do
-    {:ok, forecast} = get_forecast(place)
+  def get_weather_conditions(places) do
+    with {:ok, forecasts} <- get_forecast(places) do
+      get_in(forecasts, ["query", "results", "channel"])
+      |> Enum.map(fn channel ->
+        city = get_in(channel, ["location", "city"])
+        condition = get_in(channel, ["item", "condition"])
 
-    channel = get_in(forecast, ["query", "results", "channel"])
-    city = get_in(channel, ["location", "city"])
-    condition = get_in(channel, ["item", "condition"])
-
-    %{
-      raw_place: place,
-      city: city,
-      temp: "#{condition["temp"]}ºC",
-      text: condition["text"]
-    }
+        %{
+          raw_place: :place,
+          city: city,
+          temp: "#{condition["temp"]}ºC",
+          text: condition["text"]
+        }
+      end)
+    else
+      _ -> []
+    end
   end
 end

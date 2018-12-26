@@ -9,9 +9,9 @@ defmodule Dcbot.Application do
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
-      # Dcbot.Repo,
+      Dcbot.Repo,
       # Start the endpoint when the application starts
-      # DcbotWeb.Endpoint,
+      DcbotWeb.Endpoint,
       # Starts a worker by calling: Dcbot.Worker.start_link(arg)
       # {Dcbot.Worker, arg},
       DcbotDiscord

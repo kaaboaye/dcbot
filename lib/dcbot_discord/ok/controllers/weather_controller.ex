@@ -6,8 +6,7 @@ defmodule DcbotDiscord.Ok.WeatherController do
       locations =
         locations
         |> Enum.map(& &1["value"])
-        |> Enum.map(fn place -> Task.async(fn -> Yahoo.get_weather_conditions(place) end) end)
-        |> Enum.map(&Task.await/1)
+        |> Yahoo.get_weather_conditions()
 
       render_weather(msg, locations)
       :ok
